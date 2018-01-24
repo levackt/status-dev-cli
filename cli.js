@@ -252,11 +252,13 @@ cli.command("scan")
         browser.on('serviceUp', function(service) {
             if (service.port == statusDebugServerPort) {
                 console.log(chalk.green(chalk.bold(service.name) + " (" + service.addresses.join(", ") + ")"));
-
-                process.exit();
             }
         });
         browser.start();
+        
+        setTimeout(function() {
+            process.exit();
+        }, 10000);
     });
 
 cli.command("watch [dir] [contactIdentity]")
